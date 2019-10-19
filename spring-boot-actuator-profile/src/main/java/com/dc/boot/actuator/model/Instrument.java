@@ -11,7 +11,7 @@ public class Instrument {
 	private AtomicLong min;
 	private AtomicLong max;
 	private AtomicLong totalTime;
-	private List<Long> timeStore = new ArrayList<>();
+	private final List<Long> timeStore = new ArrayList<>();
 	private AtomicLong average;
 	private AtomicLong median;
 	private AtomicLong standardDeviation;
@@ -43,9 +43,6 @@ public class Instrument {
 	public List<Long> getTimeStore() {
 		return timeStore;
 	}
-	public void setTimeStore(List<Long> timeStore) {
-		this.timeStore = timeStore;
-	}
 	public AtomicLong getAverage() {
 		return average;
 	}
@@ -60,6 +57,19 @@ public class Instrument {
 	}
 	public AtomicLong getStandardDeviation() {
 		return standardDeviation;
+	}
+	
+	public Instrument(String methodName, Long count, Long min, Long max, Long totalTime, Long average, Long median, Long standardDeviation) {
+		super();
+		this.methodName = methodName;
+		this.count = new AtomicLong(count);
+		this.min = new AtomicLong(min);
+		this.max = new AtomicLong(max);
+		this.totalTime = new AtomicLong(totalTime);
+		this.average = new AtomicLong(average);
+		this.median = new AtomicLong(median);
+		this.standardDeviation = new AtomicLong(standardDeviation);
+		this.timeStore.add(totalTime);
 	}
 	public void setStandardDeviation(AtomicLong standardDeviation) {
 		this.standardDeviation = standardDeviation;
