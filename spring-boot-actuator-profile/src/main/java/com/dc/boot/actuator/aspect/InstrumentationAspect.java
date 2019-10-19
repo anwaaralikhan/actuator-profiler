@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class InstrumentationAspect {
 
-	@Around("@annotation(LogExecutionTime)")
-	public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
-		long start = System.currentTimeMillis();
+	@Around("@annotation(com.dc.boot.actuator.annotations.EnableInstrumentation)")
+	public Object enableInstrumentation(ProceedingJoinPoint joinPoint) throws Throwable {
+		long start = System.nanoTime();
 	    Object proceed = joinPoint.proceed();
-	    long executionTime = System.currentTimeMillis() - start;
+	    long executionTime = System.nanoTime() - start;
 	    System.out.println(joinPoint.getSignature() + " executed in " + executionTime + "ms");
 	    return proceed;
 	}
